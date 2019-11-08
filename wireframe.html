@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Quiz</title>
+    <link   rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header> 
+        <h1>Weather Quiz</h1>
+     </header>
+    <main role="main">
+        <h3>How well do you know the weather in the United States?</h3>
+        <div id="start-quiz-button">
+            <button id="js-start-button">Start Quiz</button>
+        </div>
+    </main>
+
+<!-- 
+//
+//
+// -->
+    <section id="question">
+        <div class="question-score">
+            <ul>
+                <li><span>Question: 0/10</span></li>
+                <li><span>Score: 0/10</span></li>
+            </ul>
+        </div>
+    </section>
+    <h1>Question:</h1>
+    <form name="quizform">
+        <legend> The Question</legend>
+        <input type="radio" name="answer" class= "answer-choice" value="choice 1" >choice 1<br>
+        <input type="radio" name="answer" class= "answer-choice" value="choice 2">choice 2<br>
+        <input type="radio" name="answer" class= "answer-choice" value="choice 3">choice 3<br>
+        <input type="radio" name="answer" class= "answer-choice" value="choice 4">choice 4<br>
+        <input type="submit" class="answer-button" value="Submit">
+    </form>
+
+    <!-- //
+    //
+    //
+    // -->
+    <div class="container">
+        <h2>Incorrect!</h2>
+        <img>some image here
+        <p> description</p>
+    </div>
+
+    <!-- //
+    //
+    //
+    // -->
+    <div class="container">
+        <h2>Good Job!</h2>
+        <img>some image here
+        <h3> You got this many correct</h3>
+        <input type="submit" class="restart-button" value="restart">
+    </div>
+</body>
+</html>
