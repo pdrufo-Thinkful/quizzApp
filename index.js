@@ -3,17 +3,26 @@
 function loadStartPage() {
   $('.quiz-area').html(
     `
-     <p class='intro'>How much do you know about weather in the United States?</p>      
+     <p class='intro text'>How much do you know about weather in the United States?</p>      
      
      <div>
-      <button type='button' id='startbutton' class='start'> Start Quiz</button>
+      <button type='button' id='startbutton' class='start button'> Start Quiz</button>
      </div>
    `
   );
   
 }
 
-
+function runTicker(){
+  $('.ticker').html(
+      `
+      <section class='tickers'>
+      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
+      <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
+      </section>
+      `
+  );
+}
 function nextQuestion() {
   // $('#startbutton').on('click', function(event){
     $('.quiz-area').on('click', '.start', event => {
@@ -30,12 +39,10 @@ function nextQuestion() {
 }
 
 function renderQuestion() {
+  runTicker();
   let q = STORE.quiz[STORE.currentQuestion -1];
   $('.quiz-area').html(
-    `
-      <section class='tickers'>
-      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-      <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
+      `
        <div>
        <form id="js-questions" class="question-form">
          <fieldset>
@@ -47,7 +54,7 @@ function renderQuestion() {
           </div>
 
           <div>
-           <button type = "submit" id="choice" tabindex="5"> Submit </button>
+           <button type = "submit" id="choice" class='button' tabindex="5"> Submit </button>
           </div>
           
         </fieldset>
@@ -73,24 +80,7 @@ function renderChoices() {
 
 
 function checkAnswer() {
-  // $('body').on('submit','#js-questions', function(event) {
-  //   event.preventDefault();
   
-  //   let currentQ = STORE.quiz[STORE.currentQuestion-1];
-  //   let selectedOption = $('input[name=choices]:checked').val();
-  //   console.log(selectedOption);
-    //  if (1 === 1) {
-    //    renderCorrect();
-    //  } 
-    //  if (selectedOption === currentQ.correct){
-    //       STORE.score++;
-    //       renderCorrect();
-    //      }
-    //      else{
-    //        renderIncorrect();
-    //      }
-    
-  // });
   $('.quiz-area').on('submit', event => {
     event.preventDefault();
     let userClick = $('input:checked').val();
@@ -98,6 +88,7 @@ function checkAnswer() {
     let correctAnswer = currentQ.correct;
     if (userClick === correctAnswer){
       STORE.score++;
+      runTicker();
       renderCorrect();
     }
     else {
@@ -109,12 +100,14 @@ function checkAnswer() {
 function renderCorrect() {
     $('.quiz-area').html(
       `
-      <section class='tickers'>
-      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-      <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
-      <h2>Congratulations!!!!</h2>
+      <h2>Correct!!!</h2>
+      <div class='response-box'>
+      <video loop autoplay class='videos'> <source src="images/sun.mp4" type="video/mp4">
+      </div>
+      <div>
       <p class='text'>Keep up the good work</p>
-      <button class='start'>Next</button>
+      <button class='start button'>Next</button>
+      </div>
       `
     );
 }
@@ -122,50 +115,58 @@ function renderCorrect() {
 function renderIncorrect(correct) {
   $('.quiz-area').html(
     `
-    <section class='tickers'>
-      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-      <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>    
     <h2>Wrong Answer</h2>
+    <div class='response-box'>
+      <video loop autoplay class='videos'> <source src="images/lightning.mp4" type="video/mp4">
+      </div>
+      <div>
     <p class='text'>The correct answer is : <span id='corrected'>${correct}</span></p>
-    <button class='start'>Next</button>
+    <button class='start button'>Next</button>
+    </div>
     `
   );
 
 }
 
 function renderFinalScore() {
-  if(STORE.score >= 5){
+  if(STORE.score > 5){
     $('.quiz-area').html(
       `
-      <section class='tickers'>
-        <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-        <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>    
-      <h2>Amazing</h2>
-      <p class='text'>You did it</span></p>
-      <button class='restart'>Restart Quiz</button>
+      <h2>Outstanding</h2>
+      <div>
+      <video loop autoplay class='videos'> <source src="images/guru.mp4" type="video/mp4">
+      </div>
+      <div>
+      <p class='text'>You're a weather guru!</span></p>
+      <button class='restart button'>Restart Quiz</button>
+      </div>
       `
     );
   }
   else {
     $('.quiz-area').html(
-      `
-      <section class='tickers'>
-        <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-        <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>    
+      `  
       <h2>Not so good</h2>
-      <p class='text'>try harder</span></p>
-      <button class='restart'>Restart Quiz</button>
+      <div>
+      <video loop autoplay class='videos'> <source src="images/js.mp4" type="video/mp4">
+      </div>
+      <div>
+      <p class='text'>Try it again</span></p>
+      <button class='restart button'>Restart Quiz</button>
+      </div>
       `
     );
   }
   }
 
 function restartQuiz() {
-  $('quiz-area').on('click', '.restart', event => {
+  $('.quiz-area').on('click', '.restart', event => {
+    // console.log('Hello');
     event.preventDefault();
     STORE.currentQuestion = 0;
     STORE.score = 0;
     loadStartPage();
+    
   });
 }
 
@@ -179,3 +180,11 @@ function handleQuizApp(){
 }
 
 $(handleQuizApp);
+
+
+
+
+// <section class='tickers'>
+//      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
+  //    <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
+    //   <div></div> 
