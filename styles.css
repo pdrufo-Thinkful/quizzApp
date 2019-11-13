@@ -6,16 +6,16 @@ font-family: 'Source Sans Pro', sans-serif; */
 body {
     font-family: 'Lato', sans-serif;
     color: #00202A;
-    font-size: 1em;
+    font-size: .9em;
     margin: 20px;
-    background-image: url('images/above-atmosphere-clouds-flight-37728.jpg');
+    background-image: url('images/background2.jpg');
     background-size: cover;
-  
+    background-repeat: no-repeat;
 }
 
 header h1 {
     font-size: 2em;
-    color: #1978D4;
+    color: #2A7AB0;
     top: 50px;
     text-align: center;
 }
@@ -26,7 +26,7 @@ header h1 {
     align-items: center;
     padding: 20px;
     margin: 0 auto;
-    background-color: #e9f5fe;
+    background-color: #f0f8ff;
     border-radius: 8px;
     text-align: center;
     border: 0.1em solid gray;
@@ -70,13 +70,13 @@ fieldset {
 .answers{
     margin-bottom: 1em;
     text-align: left;
-    margin-left: 50px;
+    margin-left: 10px;
 }
 
-@media screen and (min-width: 319px)  {
+@media screen and (min-width: 320px)  {
 
 .videos {
-    height: 8em;
+    height: 6em;
 }
 .answers{
     margin-bottom: 1em;
@@ -109,7 +109,10 @@ header h1 {
     height: 15em;
 }
 .ticker {
-    font-size: 1.5em;
+    font-size: 1.3em;
+}
+body {
+    font-size: 1.1em;
 }
 
 }

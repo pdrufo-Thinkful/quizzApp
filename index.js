@@ -15,7 +15,7 @@ function loadStartPage() {
 
 function runTicker(){
   $('.ticker').html(
-      `
+    `
       <section class='tickers'>
       <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
       <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
@@ -25,7 +25,7 @@ function runTicker(){
 }
 function nextQuestion() {
   // $('#startbutton').on('click', function(event){
-    $('.quiz-area').on('click', '.start', event => {
+  $('.quiz-area').on('click', '.start', event => {
     event.preventDefault();
     if (STORE.currentQuestion < STORE.quiz.length){
       STORE.currentQuestion++;
@@ -42,7 +42,7 @@ function renderQuestion() {
   runTicker();
   let q = STORE.quiz[STORE.currentQuestion -1];
   $('.quiz-area').html(
-      `
+    `
        <div>
        <form id="js-questions" class="question-form">
          <fieldset>
@@ -98,8 +98,8 @@ function checkAnswer() {
 }
 
 function renderCorrect() {
-    $('.quiz-area').html(
-      `
+  $('.quiz-area').html(
+    `
       <h2>Correct!!!</h2>
       <div class='response-box'>
       <video loop autoplay class='videos'> <source src="images/sun.mp4" type="video/mp4">
@@ -109,7 +109,7 @@ function renderCorrect() {
       <button class='start button'>Next</button>
       </div>
       `
-    );
+  );
 }
 
 function renderIncorrect(correct) {
@@ -132,7 +132,7 @@ function renderFinalScore() {
   if(STORE.score > 5){
     $('.quiz-area').html(
       `
-      <h2>Outstanding</h2>
+      <h2>Outstanding!!!</h2>
       <div>
       <video loop autoplay class='videos'> <source src="images/guru.mp4" type="video/mp4">
       </div>
@@ -146,18 +146,18 @@ function renderFinalScore() {
   else {
     $('.quiz-area').html(
       `  
-      <h2>Not so good</h2>
+      <h2>You're as cold as ice</h2>
       <div>
       <video loop autoplay class='videos'> <source src="images/js.mp4" type="video/mp4">
       </div>
       <div>
-      <p class='text'>Try it again</span></p>
+      <p class='text'>Give it another try</span></p>
       <button class='restart button'>Restart Quiz</button>
       </div>
       `
     );
   }
-  }
+}
 
 function restartQuiz() {
   $('.quiz-area').on('click', '.restart', event => {
@@ -186,5 +186,5 @@ $(handleQuizApp);
 
 // <section class='tickers'>
 //      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-  //    <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
-    //   <div></div> 
+//    <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
+//   <div></div> 
