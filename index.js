@@ -4,13 +4,11 @@ function loadStartPage() {
   $('.quiz-area').html(
     `
      <p class='intro text'>How much do you know about weather in the United States?</p>      
-     
      <div>
       <button type='button' id='startbutton' class='start button'> Start Quiz</button>
      </div>
    `
   );
-  
 }
 
 function runTicker(){
@@ -24,17 +22,16 @@ function runTicker(){
   );
 }
 function nextQuestion() {
-  // $('#startbutton').on('click', function(event){
   $('.quiz-area').on('click', '.start', event => {
     event.preventDefault();
-    if (STORE.currentQuestion < STORE.quiz.length){
+    $('.ticker').show();
+    if (STORE.currentQuestion < STORE.quiz.length) {
       STORE.currentQuestion++;
       $('.quiz-area').html(renderQuestion());
     }
     else {
       $('.quiz-area').html(renderFinalScore(STORE.score));
     }
-
   });
 }
 
@@ -56,31 +53,29 @@ function renderQuestion() {
           <div>
            <button type = "submit" id="choice" class='button' tabindex="5"> Submit </button>
           </div>
-          
-        </fieldset>
+         </fieldset>
       </form>
       </div>
        `
   );
-  
   renderChoices();
 }
 
 function renderChoices() {
   let q = STORE.quiz[STORE.currentQuestion -1];
-  for(let i=0; i<q.choices.length; i++)
-  {
-    $('.answers').append(`
+  for(let i=0; i<q.choices.length; i++) {
+    $('.answers').append(
+      `
         <input type = "radio" name="choices" id="choice${i+1}" value= "${q.choices[i]}" tabindex ="${i+1}" required> 
         <label for="choice${i+1}"> ${q.choices[i]}</label> <br/>
         <span id="js-r${i+1}"></span>
-    `);
+      `
+    );
   }
 }
 
 
 function checkAnswer() {
-  
   $('.quiz-area').on('submit', event => {
     event.preventDefault();
     let userClick = $('input:checked').val();
@@ -108,7 +103,7 @@ function renderCorrect() {
       <p class='text'>Keep up the good work</p>
       <button class='start button'>Next</button>
       </div>
-      `
+    `
   );
 }
 
@@ -161,22 +156,21 @@ function renderFinalScore() {
 
 function restartQuiz() {
   $('.quiz-area').on('click', '.restart', event => {
-    // console.log('Hello');
     event.preventDefault();
     STORE.currentQuestion = 0;
     STORE.score = 0;
+    runTicker();
     loadStartPage();
+    $('.ticker').hide();
     
   });
 }
 
 function handleQuizApp(){
-
   loadStartPage();
   nextQuestion();
   checkAnswer();
   restartQuiz();
-  
 }
 
 $(handleQuizApp);
@@ -184,7 +178,3 @@ $(handleQuizApp);
 
 
 
-// <section class='tickers'>
-//      <span class='question-ticker text'>Question: ${STORE.currentQuestion}/${STORE.quiz.length}</span>
-//    <span class='score-ticker text'>Score: ${STORE.score}/${STORE.quiz.length}</span>
-//   <div></div> 
