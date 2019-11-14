@@ -1,8 +1,7 @@
 * {
     box-sizing: border-box;  
 }
-/* font-family: 'Lato', sans-serif;
-font-family: 'Source Sans Pro', sans-serif; */
+
 body {
     font-family: 'Lato', sans-serif;
     color: #00202A;
@@ -52,14 +51,17 @@ header h1 {
 fieldset {
     border: none;
   }
+
 .ticker{
     display: block;
     text-align: center;
     margin-bottom: 20px;   
 }
+
 .question-ticker {
     padding-right: 1.5em;
 }
+
 .question-area {
     margin-bottom: 1em;
 }
@@ -67,6 +69,7 @@ fieldset {
 .videos {
     height: 5em;
 }
+
 .answers{
     margin-bottom: 1em;
     text-align: left;
@@ -101,16 +104,20 @@ header h1 {
 .container {
     width: 80%;
 }
+
 .answers{
         margin-bottom: 1em;
         display: inline-block;
 }
+
 .videos {
     height: 15em;
 }
+
 .ticker {
     font-size: 1.3em;
 }
+
 body {
     font-size: 1.1em;
 }
